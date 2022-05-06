@@ -6,7 +6,7 @@
 /*   By: maperez- <maperez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 14:11:58 by maperez-          #+#    #+#             */
-/*   Updated: 2022/05/05 16:28:19 by maperez-         ###   ########.fr       */
+/*   Updated: 2022/05/06 11:16:18 by maperez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
+/* int	main(void)
 {
 	int	fd;
 
@@ -119,6 +119,9 @@ int	main(void)
 		exit(EXIT_FAILURE);
 	}
 	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	close(fd);
 	return (0);
 }
+ */

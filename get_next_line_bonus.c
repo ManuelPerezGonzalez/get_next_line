@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maperez- <maperez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 14:11:58 by maperez-          #+#    #+#             */
-/*   Updated: 2022/05/05 16:28:19 by maperez-         ###   ########.fr       */
+/*   Updated: 2022/05/06 11:19:42 by maperez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,29 +96,38 @@ char	*ft_read_and_save(int fd, char *save)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*save;
+	static char	*save[257];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
 		return (0);
-	save = ft_read_and_save(fd, save);
-	if (!save)
+	save[fd] = ft_read_and_save(fd, save[fd]);
+	if (!save[fd])
 		return (NULL);
-	line = ft_get_line(save);
-	save = ft_save(save);
+	line = ft_get_line(save[fd]);
+	save[fd] = ft_save(save[fd]);
 	return (line);
 }
 
-int	main(void)
+/* int	main(void)
 {
-	int	fd;
+	int	fd1;
+	int	fd2;
 
-	fd = open("hola.txt", O_RDONLY);
-	if (fd == -1)
+	fd1 = open("hola.txt", O_RDONLY);
+	fd2 = open("hola copy.txt", O_RDONLY);
+	if (fd1 == -1 || fd2 == -1)
 	{
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
-	printf("%s", get_next_line(fd));
-	close(fd);
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd2));
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd2));
+	printf("%s", get_next_line(fd1));
+	printf("%s", get_next_line(fd2));
+	close(fd1);
+	close(fd2);
 	return (0);
 }
+ */
